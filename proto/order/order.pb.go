@@ -2,13 +2,14 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v3.21.12
-// source: proto/order.proto
+// source: proto/order/order.proto
 
 package orderpb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -30,7 +31,7 @@ type OrderRequest struct {
 
 func (x *OrderRequest) Reset() {
 	*x = OrderRequest{}
-	mi := &file_proto_order_proto_msgTypes[0]
+	mi := &file_proto_order_order_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +43,7 @@ func (x *OrderRequest) String() string {
 func (*OrderRequest) ProtoMessage() {}
 
 func (x *OrderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_order_proto_msgTypes[0]
+	mi := &file_proto_order_order_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +56,7 @@ func (x *OrderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderRequest.ProtoReflect.Descriptor instead.
 func (*OrderRequest) Descriptor() ([]byte, []int) {
-	return file_proto_order_proto_rawDescGZIP(), []int{0}
+	return file_proto_order_order_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *OrderRequest) GetOrderId() string {
@@ -70,13 +71,14 @@ type OrderStatusUpdate struct {
 	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
 	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *OrderStatusUpdate) Reset() {
 	*x = OrderStatusUpdate{}
-	mi := &file_proto_order_proto_msgTypes[1]
+	mi := &file_proto_order_order_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -88,7 +90,7 @@ func (x *OrderStatusUpdate) String() string {
 func (*OrderStatusUpdate) ProtoMessage() {}
 
 func (x *OrderStatusUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_order_proto_msgTypes[1]
+	mi := &file_proto_order_order_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -101,7 +103,7 @@ func (x *OrderStatusUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderStatusUpdate.ProtoReflect.Descriptor instead.
 func (*OrderStatusUpdate) Descriptor() ([]byte, []int) {
-	return file_proto_order_proto_rawDescGZIP(), []int{1}
+	return file_proto_order_order_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *OrderStatusUpdate) GetOrderId() string {
@@ -125,67 +127,78 @@ func (x *OrderStatusUpdate) GetMessage() string {
 	return ""
 }
 
-var File_proto_order_proto protoreflect.FileDescriptor
+func (x *OrderStatusUpdate) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
 
-const file_proto_order_proto_rawDesc = "" +
+var File_proto_order_order_proto protoreflect.FileDescriptor
+
+const file_proto_order_order_proto_rawDesc = "" +
 	"\n" +
-	"\x11proto/order.proto\x12\x05order\")\n" +
+	"\x17proto/order/order.proto\x12\x05order\x1a\x1fgoogle/protobuf/timestamp.proto\")\n" +
 	"\fOrderRequest\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\"`\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\"\x9b\x01\n" +
 	"\x11OrderStatusUpdate\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage2Z\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\x129\n" +
+	"\n" +
+	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt2Z\n" +
 	"\fOrderService\x12J\n" +
 	"\x17SubscribeToOrderUpdates\x12\x13.order.OrderRequest\x1a\x18.order.OrderStatusUpdate0\x01BBZ@github.com/Aruzhan38/order-payment-generated/proto/order;orderpbb\x06proto3"
 
 var (
-	file_proto_order_proto_rawDescOnce sync.Once
-	file_proto_order_proto_rawDescData []byte
+	file_proto_order_order_proto_rawDescOnce sync.Once
+	file_proto_order_order_proto_rawDescData []byte
 )
 
-func file_proto_order_proto_rawDescGZIP() []byte {
-	file_proto_order_proto_rawDescOnce.Do(func() {
-		file_proto_order_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_order_proto_rawDesc), len(file_proto_order_proto_rawDesc)))
+func file_proto_order_order_proto_rawDescGZIP() []byte {
+	file_proto_order_order_proto_rawDescOnce.Do(func() {
+		file_proto_order_order_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_order_order_proto_rawDesc), len(file_proto_order_order_proto_rawDesc)))
 	})
-	return file_proto_order_proto_rawDescData
+	return file_proto_order_order_proto_rawDescData
 }
 
-var file_proto_order_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_proto_order_proto_goTypes = []any{
-	(*OrderRequest)(nil),      // 0: order.OrderRequest
-	(*OrderStatusUpdate)(nil), // 1: order.OrderStatusUpdate
+var file_proto_order_order_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_order_order_proto_goTypes = []any{
+	(*OrderRequest)(nil),          // 0: order.OrderRequest
+	(*OrderStatusUpdate)(nil),     // 1: order.OrderStatusUpdate
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
-var file_proto_order_proto_depIdxs = []int32{
-	0, // 0: order.OrderService.SubscribeToOrderUpdates:input_type -> order.OrderRequest
-	1, // 1: order.OrderService.SubscribeToOrderUpdates:output_type -> order.OrderStatusUpdate
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+var file_proto_order_order_proto_depIdxs = []int32{
+	2, // 0: order.OrderStatusUpdate.updated_at:type_name -> google.protobuf.Timestamp
+	0, // 1: order.OrderService.SubscribeToOrderUpdates:input_type -> order.OrderRequest
+	1, // 2: order.OrderService.SubscribeToOrderUpdates:output_type -> order.OrderStatusUpdate
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_proto_order_proto_init() }
-func file_proto_order_proto_init() {
-	if File_proto_order_proto != nil {
+func init() { file_proto_order_order_proto_init() }
+func file_proto_order_order_proto_init() {
+	if File_proto_order_order_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_order_proto_rawDesc), len(file_proto_order_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_order_order_proto_rawDesc), len(file_proto_order_order_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_order_proto_goTypes,
-		DependencyIndexes: file_proto_order_proto_depIdxs,
-		MessageInfos:      file_proto_order_proto_msgTypes,
+		GoTypes:           file_proto_order_order_proto_goTypes,
+		DependencyIndexes: file_proto_order_order_proto_depIdxs,
+		MessageInfos:      file_proto_order_order_proto_msgTypes,
 	}.Build()
-	File_proto_order_proto = out.File
-	file_proto_order_proto_goTypes = nil
-	file_proto_order_proto_depIdxs = nil
+	File_proto_order_order_proto = out.File
+	file_proto_order_order_proto_goTypes = nil
+	file_proto_order_order_proto_depIdxs = nil
 }
